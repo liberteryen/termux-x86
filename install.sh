@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 wget() {
-	command wget -c "@$@"
+	command wget -c "$@"
 }
 distro=debian
 env=xfce4
