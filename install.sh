@@ -1,5 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
-
+wget() {
+	command wget -c "@$@"
+}
 distro=debian
 env=xfce4
 rep=apt
@@ -241,11 +243,11 @@ if [ "$update" = true ];
   fi
 
 termux-setup-storage
-pkg update 
-pkg upgrade -y
-pkg install -y tur-repo x11-repo
-pkg install -y pulseaudio termux-x11-nightly proot-distro wget
-pkg install -y \
+apt update 
+apt upgrade -y
+apt install -y tur-repo x11-repo
+apt install -y pulseaudio termux-x11-nightly proot-distro wget
+apt install -y \
     freetype git gnutls libandroid-shmem-static \
     libx11 xorgproto libdrm libpixman libxfixes libjpeg-turbo \
     mesa-demos osmesa pulseaudio termux-x11-nightly vulkan-tools xtrans \
@@ -253,36 +255,36 @@ pkg install -y \
     libxkbfile libpciaccess xcb-util-renderutil xcb-util-image \
     xcb-util-keysyms xcb-util-wm xorg-xkbcomp xkeyboard-config \
     libxdamage libxinerama libxshmfence neofetch mousepad stracer
-pkg install -y vulkan-tools vulkan-loader-android mesa-zink
-pkg install -y mesa-vulkan-icd-freedreno mesa-zink
-pkg install -y glibc-repo
-pkg install -y glibc-runner
-pkg install -y mesa-vulkan-icd-freedreno-glibc mangohud-glibc 
+apt install -y vulkan-tools vulkan-loader-android mesa-zink
+apt install -y mesa-vulkan-icd-freedreno mesa-zink
+apt install -y glibc-repo
+apt install -y glibc-runner
+apt install -y mesa-vulkan-icd-freedreno-glibc mangohud-glibc 
     mesa-zink-glibc box64-glibc vulkan-volk-glibc
-pkg install -y \
+apt install -y \
     libxcb-glibc libxcomposite-glibc libxcursor-glibc libxfixes-glibc \
     libxrender-glibc libgcrypt-glibc libgpg-error-glibc libice-glibc \
     libsm-glibc libxau-glibc libxcrypt-glibc libxdmcp-glibc \
     libxext-glibc libxinerama-glibc libxkbfile-glibc libxml2-glibc
-pkg install -y pulseaudio-glibc libx*-*glibc*
-pkg install -y libgmp-glibc
-pkg install -y fex
-pkg install -y mesa-zink-dev virglrenderer-mesa-zink* virgl_test_server* freetype gnutls \
+apt install -y pulseaudio-glibc libx*-*glibc*
+apt install -y libgmp-glibc
+apt install -y fex
+apt install -y mesa-zink-dev virglrenderer-mesa-zink* virgl_test_server* freetype gnutls \
     libandroid-shmem-static libx11 xorgproto libdrm libpixman libxfixes \
     libjpeg-turbo mesa-demos osmesa pulseaudio termux-x11-nightly vulkan-tools \
     xtrans libxxf86vm xorg-xrandr xorg-font-util xorg-util-macros libxfont2 \
     libxkbfile libpciaccess xcb-util-renderutil xcb-util-image xcb-util-keysyms \
     xcb-util-wm xorg-xkbcomp xkeyboard-config libxdamage libxinerama libxshmfence
-pkg install -y virglrenderer-mesa-zink box64-glibc vulkan-volk-glibc
+apt install -y virglrenderer-mesa-zink box64-glibc vulkan-volk-glibc
 pip install psutil
 
 termux-setup-storage
 setup_termux
 
 if [ $desktop_termux = true ] ; then
-  pkg install $env
-  pkg install firefox
-  pkg install glmark2
+  apt install $env
+  apt install firefox
+  apt install glmark2
 fi
 
 if [ $termux_hangover = true ] ; then
@@ -292,7 +294,7 @@ if [ $termux_hangover = true ] ; then
   tput setab 0
   tput setaf 3;
   
-  pkg in hangover*
+  apt in hangover*
 
   cp hangover $PREFIX/bin
   cd $HOME
@@ -356,7 +358,7 @@ chmod +x wine_in.sh
 cp bine.sh $PREFIX/glibc/bin/bine
 ln -s $PREFIX/glibc/bin/bine $PREFIX/bin || true
 launcher || true
-pkg upgrade
+apt upgrade
 
 
 echo "glibc-runner $PREFIX/glibc/share/jdk/bin/java $@" > $PREFIX/bin/gava && chmod +x $PREFIX/bin/gava
